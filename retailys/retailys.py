@@ -1,7 +1,6 @@
 ﻿from io import BytesIO
 from zipfile import ZipFile
 import urllib.request
-#from xml.dom import minidom
 from lxml import etree
 from datetime import datetime
 import os
@@ -22,8 +21,7 @@ currentTime = now.strftime("%H:%M:%S")
 print(currentTime, ": Archiv stažen a rozbalen.")
 print("Parsuji xml..")
 
-tree = etree.parse("C:/Users/mrave/Downloads/export_full.xml")
-root = tree.getroot()
+root = etree.fromstring(content)
 
 now = datetime.now()
 currentTime = now.strftime("%H:%M:%S")
