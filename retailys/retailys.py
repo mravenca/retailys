@@ -5,15 +5,17 @@ from lxml import etree
 from datetime import datetime
 import os
 
-#url = urllib.request.urlopen("https://www.retailys.cz/wp-content/uploads/astra_export_xml.zip")
-url = "C:/Users/mrave/Downloads/astra_export_xml.zip"
+with urllib.request.urlopen("https://www.retailys.cz/wp-content/uploads/astra_export_xml.zip") as response:
+    xmlstr = response.read()
+    
+    
 
 lines=""
 
 now = datetime.now()
 currentTime = now.strftime("%H:%M:%S")
 print(currentTime, ": Stahuji a rozbaluji archiv..")
-with ZipFile(url) as my_zip_file:
+with ZipFile(BytesIO(xmlstr)) as my_zip_file:
     content = my_zip_file.open('export_full.xml').read()
     
 now = datetime.now()
